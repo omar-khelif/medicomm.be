@@ -492,24 +492,25 @@ footer{background:var(--charcoal);padding:60px 80px 36px;}
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="contact-detail-label" data-i18n="cd.phone">Telefoon</div><div class="contact-detail-value">+32 (0) — — — — — —</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-detail-label" data-i18n="cd.response">Reactietijd</div><div class="contact-detail-value" data-i18n="cd.responseval">Binnen 24 uur op werkdagen</div></div></div>
     </div>
-    <form class="contact-form reveal reveal-delay-2">
+    <form class="contact-form reveal reveal-delay-2" action="https://api.web3forms.com/submit" method="POST">
       <div class="form-row">
-        <div class="form-group"><label class="form-label" data-i18n="form.firstname">Voornaam</label><input class="form-input" type="text"/></div>
-        <div class="form-group"><label class="form-label" data-i18n="form.lastname">Achternaam</label><input class="form-input" type="text"/></div>
+        <input type="hidden" name="access_key" value="edfbd205-a2bb-4422-9c14-7e0370e19ba8">
+        <div class="form-group"><label class="form-label" data-i18n="form.firstname">Voornaam</label><input class="form-input" type="text" name="name" required/></div>
+        <div class="form-group"><label class="form-label" data-i18n="form.lastname">Achternaam</label><input class="form-input" type="text" name="lastname" required/></div>
       </div>
-      <div class="form-group"><label class="form-label" data-i18n="form.email">E-mailadres</label><input class="form-input" type="email"/></div>
+      <div class="form-group"><label class="form-label" data-i18n="form.email">E-mailadres</label><input class="form-input" type="email" name="email" required/></div>
       <div class="form-group">
         <label class="form-label" data-i18n="form.service">Geïnteresseerd in</label>
         <select class="form-select">
-          <option data-i18n="form.opt0">— Selecteer een dienst —</option>
-          <option data-i18n="form.opt1">Nederlands voor medische professionals</option>
-          <option data-i18n="form.opt2">Soft skills training</option>
-          <option data-i18n="form.opt3">Spreker &amp; workshops boeken</option>
-          <option data-i18n="form.opt4">Diploma-erkenning &amp; RIZIV-begeleiding</option>
-          <option data-i18n="form.opt5">Meerdere diensten / volledig traject</option>
+          <option data-i18n="form.opt0 " value="a" required>— Selecteer een dienst —</option>
+          <option data-i18n="form.opt1" value="b" required>Nederlands voor medische professionals</option>
+          <option data-i18n="form.opt2" value="c" required>Soft skills training</option>
+          <option data-i18n="form.opt3" value="d" required>Spreker &amp; workshops boeken</option>
+          <option data-i18n="form.opt4" value="e" required>Diploma-erkenning &amp; RIZIV-begeleiding</option>
+          <option data-i18n="form.opt5" value="f" required>Meerdere diensten / volledig traject</option>
         </select>
       </div>
-      <div class="form-group"><label class="form-label" data-i18n="form.message">Uw bericht</label><textarea class="form-textarea" data-i18n-placeholder="form.placeholder"></textarea></div>
+      <div class="form-group"><label class="form-label" data-i18n="form.message">Uw bericht</label><textarea name="message" required class="form-textarea" data-i18n-placeholder="form.placeholder"></textarea></div>
       <button type="submit" class="form-submit" data-i18n="form.submit">Verstuur aanvraag →</button>
     </form>
   </div>
