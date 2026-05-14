@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" dir="ltr">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -209,24 +209,33 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
 .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}.reveal-delay-3{transition-delay:0.3s;}.reveal-delay-4{transition-delay:0.4s;}
 
 
-/* ── LANG SWITCHER ── */
-#lang-switcher-fixed {
-  position: fixed; top: 20px; right: 20px; z-index: 999;
-  display: flex; gap: 4px;
-  background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
-  border: 1px solid var(--green-mid); border-radius: 8px;
-  padding: 6px 8px; box-shadow: 0 2px 16px rgba(0,0,0,0.1);
-}
-#lang-switcher-fixed button {
-  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
-  letter-spacing: 1.5px; color: var(--grey); background: none;
-  border: 1px solid transparent; border-radius: 4px;
-  padding: 5px 8px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;
-}
-#lang-switcher-fixed button.active { color: var(--green); border-color: var(--green); background: var(--green-light); }
-#lang-switcher-fixed button:hover:not(.active) { color: var(--charcoal); background: var(--off-white); }
+
+/* Lang sections */
 .lang-section { display: none; }
-.nav-inner {
+
+/* Taalwisselaar — onder de nav, rechts uitgelijnd */
+#lang-bar {
+  position: fixed; top: 72px; right: 0; z-index: 99;
+  display: flex; gap: 0;
+  background: white;
+  border-left: 1px solid var(--green-mid);
+  border-bottom: 1px solid var(--green-mid);
+  border-radius: 0 0 0 8px;
+  padding: 5px 8px 5px 10px;
+  box-shadow: -2px 2px 12px rgba(0,0,0,0.07);
+}
+#lang-bar button {
+  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 1.2px; color: var(--grey); background: none;
+  border: 1px solid transparent; border-radius: 4px;
+  padding: 4px 7px; cursor: pointer; text-transform: uppercase;
+  transition: all 0.15s;
+}
+#lang-bar button.active { color: var(--green); border-color: var(--green); background: var(--green-light); }
+#lang-bar button:hover:not(.active) { color: var(--charcoal); background: var(--off-white); }
+
+/* Shared nav */
+#main-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(29,184,116,0.12);
@@ -234,48 +243,61 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
   display: flex; align-items: center; justify-content: space-between;
   transition: box-shadow 0.3s;
 }
-.nav-inner.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.08); }
+#main-nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.08); }
+#main-nav .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+#main-nav .nav-links a { font-size: 13.5px; font-weight: 400; color: var(--grey); text-decoration: none; padding: 6px 14px; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+#main-nav .nav-links a:hover { color: var(--charcoal); background: var(--green-light); }
+#main-nav .nav-cta { background: var(--green); color: white !important; padding: 10px 22px; border-radius: 4px; font-weight: 500 !important; font-size: 13px !important; }
+#main-nav .nav-cta:hover { background: var(--green-dark) !important; }
+#main-nav .nav-download { background: var(--off-white); color: var(--charcoal) !important; border: 1px solid var(--grey-light); padding: 9px 18px; border-radius: 4px; font-weight: 500 !important; font-size: 13px !important; display: flex; align-items: center; gap: 6px; }
+#main-nav .nav-download:hover { background: var(--green-light) !important; border-color: var(--green) !important; color: var(--green-dark) !important; }
 </style>
 </head>
 <body>
 
-<div id="lang-switcher-fixed">
-  <button onclick="switchLang('nl')" class="active" id="btn-nl">NL</button>
-  <button onclick="switchLang('en')" id="btn-en">EN</button>
-  <button onclick="switchLang('fr')" id="btn-fr">FR</button>
-  <button onclick="switchLang('es')" id="btn-es">ES</button>
-  <button onclick="switchLang('ru')" id="btn-ru">RU</button>
-  <button onclick="switchLang('ar')" id="btn-ar">AR</button>
+<!-- Taalwisselaar -->
+<div id="lang-bar">
+  <button id="lb-nl">NL</button>
+  <button id="lb-en">EN</button>
+  <button id="lb-fr">FR</button>
+  <button id="lb-es">ES</button>
+  <button id="lb-ru">RU</button>
+  <button id="lb-ar">AR</button>
 </div>
 
-<div class="modal-overlay" id="downloadsModal">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('downloadsModal').classList.remove('open')">✕</button>
-    <h3 id="modal-title-txt">Downloads</h3>
-    <p id="modal-intro-txt">Meer informatie over de sprekers, trainingen en workshops van Medicomm.</p>
-    <div class="download-list">
-      <a href="#" class="download-item"><div class="download-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6"/></svg></div><div class="download-info"><div class="download-title" id="dl1-title">Spreker — Info &amp; Onderwerpen</div><div class="download-meta">PDF</div></div><span class="download-arrow">↓</span></a>
-      <a href="#" class="download-item"><div class="download-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6"/></svg></div><div class="download-info"><div class="download-title" id="dl2-title">Trainingen &amp; Workshops</div><div class="download-meta">PDF</div></div><span class="download-arrow">↓</span></a>
-      <a href="#" class="download-item"><div class="download-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6"/></svg></div><div class="download-info"><div class="download-title" id="dl3-title">Medicomm — Overzicht &amp; Referenties</div><div class="download-meta">PDF</div></div><span class="download-arrow">↓</span></a>
+<!-- Gedeelde navigatie -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo"><div class="nav-logo-icon"></div><div class="nav-wordmark"><span>medi</span><span>comm</span></div></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a id="nav-taaltraject" href="#modules-nl">Taaltraject</a></li>
+    <li><a id="nav-diensten" href="#services-nl">Diensten</a></li>
+    <li><a id="nav-pakketten" href="#tiers-nl">Pakketten</a></li>
+    <li><a id="nav-contact" href="#contact-nl">Contact</a></li>
+    <li><a id="nav-downloads" href="#" class="nav-download">
+      <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      <span id="nav-dl-txt">Downloads</span>
+    </a></li>
+    <li><a id="nav-intake" href="#contact-nl" class="nav-cta">Gratis intake →</a></li>
+  </ul>
+</nav>
+
+<!-- Downloads modal -->
+<div id="modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:16px;padding:48px;max-width:560px;width:90%;position:relative;box-shadow:0 24px 64px rgba(0,0,0,0.2);">
+    <button id="modal-close" style="position:absolute;top:20px;right:20px;background:var(--off-white);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px;color:var(--grey);">✕</button>
+    <h3 id="modal-title" style="font-size:22px;font-weight:700;margin-bottom:8px;color:var(--charcoal);font-family:'Outfit',sans-serif;">Downloads</h3>
+    <p id="modal-intro" style="font-size:14px;font-weight:300;color:var(--grey);margin-bottom:28px;line-height:1.6;">Meer informatie over de sprekers, trainingen en workshops.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a href="#" class="download-item"><div class="download-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6"/></svg></div><div class="download-info"><div class="download-title" id="dl1">Spreker — Info &amp; Onderwerpen</div><div class="download-meta">PDF</div></div><span style="color:var(--green-dark);font-size:16px;">↓</span></a>
+      <a href="#" class="download-item"><div class="download-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6"/></svg></div><div class="download-info"><div class="download-title" id="dl2">Trainingen &amp; Workshops</div><div class="download-meta">PDF</div></div><span style="color:var(--green-dark);font-size:16px;">↓</span></a>
+      <a href="#" class="download-item"><div class="download-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6"/></svg></div><div class="download-info"><div class="download-title" id="dl3">Medicomm — Overzicht &amp; Referenties</div><div class="download-meta">PDF</div></div><span style="color:var(--green-dark);font-size:16px;">↓</span></a>
     </div>
-    <p class="modal-note" id="modal-note-txt">Documenten worden regelmatig bijgewerkt.</p>
+    <p id="modal-note" style="font-size:12px;color:var(--grey);margin-top:20px;text-align:center;font-style:italic;">Documenten worden regelmatig bijgewerkt.</p>
   </div>
 </div>
 
-
-
-<div id="lang-nl" class="lang-section" dir="ltr">
-<nav class="nav-inner">
-  <a href="#" class="nav-logo"><div class="nav-logo-icon"></div><div class="nav-wordmark"><span>medi</span><span>comm</span></div></a>
-  <ul class="nav-links">
-    <li><a href="#modules-nl">Taaltraject</a></li>
-    <li><a href="#services-nl">Diensten</a></li>
-    <li><a href="#tiers-nl">Pakketten</a></li>
-    <li><a href="#contact-nl">Contact</a></li>
-    <li><a href="#" class="nav-download" onclick="openModal();return false;"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Downloads</a></li>
-    <li><a href="#contact-nl" class="nav-cta">Gratis intake →</a></li>
-  </ul>
-</nav>
+<!-- Taalinhoud -->
+<div id="lang-nl" class="lang-section">
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Medicomm · België</div>
@@ -286,7 +308,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <a href="https://medicomm.teachable.com/private_pages/20286812?preview=logged_out" target="_blank" class="btn-primary">Ontdek het taaltraject <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#contact-nl" class="btn-secondary">Gratis intake →</a>
     </div>
-    <div class="hero-langs"><span class="hero-lang-label">Cursustalen</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">FR</span><span class="hero-lang-pill">ES</span><span class="hero-lang-pill">AR</span><span class="hero-lang-pill">RU</span></div></div>
+    <div class="hero-langs"><span class="hero-lang-label">Cursustalen</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">RU</span><span class="hero-lang-pill">AR</span></div></div>
   </div>
   <div class="hero-right">
     <div class="hero-plus-wrap">
@@ -298,11 +320,11 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
     </div>
   </div>
 </section>
-<div class="intro-strip"><p class="intro-strip-text">Medicomm biedt 5 modules aan (van A1 tot C1), <strong>elk aangepast aan een medische context</strong>. Je leert precies de taal die je nodig hebt voor jouw vak — en alles wat nodig is om te integreren in de dagelijkse praktijk: van wetten en regels tot communicatiestijlen en -tactieken. <strong>Leren doe je wanneer het jou past, in het comfort van je eigen woning.</strong></p><a href="#contact-nl" class="btn-primary" style="white-space:nowrap;">Start vandaag nog →</a></div>
+<div class="intro-strip"><p class="intro-strip-text">Medicomm biedt 5 modules aan (van A1 tot C1), <strong>elk aangepast aan een medische context</strong>. Je leert precies de taal die je nodig hebt voor jouw vak — en alles wat nodig is om te integreren in de dagelijkse praktijk. <strong>Leren doe je wanneer het jou past, in het comfort van je eigen woning.</strong></p><a href="#contact-nl" class="btn-primary" style="white-space:nowrap;">Start vandaag nog →</a></div>
 <section id="modules-nl">
   <div class="reveal"><div class="section-eyebrow">Het taaltraject</div><h2 class="section-title">Snelle assimilatie.<br>Steile groeicurve.</h2></div>
   <div class="modules-intro-grid reveal">
-    <div class="modules-text"><p>De Medicomm-methode zet in op <strong>snelle assimilatie</strong>. Elke module bestaat uit 28 lessen, opgedeeld in 4 delen. Een les per dag en een deel per week — mits dagelijkse oefening kun je de modules A1, A2 en B1 op <strong>een maand per module</strong> afwerken.</p><p>De modules zetten niet alleen in op taal, maar ook op <strong>communicatie en de regels en gewoonten binnen de Belgische zorg</strong>. Bovendien word je wegwijs gemaakt in de structuur en wetten die hier gelden.</p><p>De audio helpt je om vanaf les 1 te werken aan een goede uitspraak. Je kunt de lessen volledig zelfstandig verwerken, maar we raden aan ze te combineren met een aantal contactlessen — zo zorg je ervoor dat fouten tijdig worden hersteld en niet worden geautomatiseerd.</p><p style="margin-top:8px;"><em style="color:var(--grey);">Weet je niet goed wat het beste bij jouw situatie past? Vraag dan een <strong><a href="#contact" style="color:var(--green-dark);">gratis intake gesprek</a></strong>.</em></p></div>
+    <div class="modules-text"><p>De Medicomm-methode zet in op <strong>snelle assimilatie</strong>. Elke module bestaat uit 28 lessen, opgedeeld in 4 delen. Een les per dag en een deel per week — mits dagelijkse oefening kun je de modules A1, A2 en B1 op <strong>een maand per module</strong> afwerken.</p><p>De modules zetten niet alleen in op taal, maar ook op <strong>communicatie en de regels en gewoonten binnen de Belgische zorg</strong>. Bovendien word je wegwijs gemaakt in de structuur en wetten die hier gelden.</p><p>De audio helpt je om vanaf les 1 te werken aan een goede uitspraak. Je kunt de lessen volledig zelfstandig verwerken, maar we raden aan ze te combineren met een aantal contactlessen.</p><p style="margin-top:8px;"><em style="color:var(--grey);">Weet je niet goed wat het beste bij jouw situatie past? Vraag dan een <strong><a href="#contact" style="color:var(--green-dark);">gratis intake gesprek</a></strong>.</em></p></div>
     <div class="quote-block"><p class="quote-text">"Ongelooflijk hoe snel dit ging, stap voor stap. En opeens sprak ik en werd ik begrepen."</p><div class="quote-author"><strong>Olga</strong>Verpleegster spoeddienst</div></div>
   </div>
   <div class="modules-levels reveal"><div class="module-level"><div class="module-level-tag">A1</div><div class="module-level-title">Beginners</div><div class="module-level-desc">Eerste stappen in het medisch Nederlands</div></div><div class="module-level"><div class="module-level-tag">A2</div><div class="module-level-title">Elementair</div><div class="module-level-desc">Basisgesprekken in de zorgcontext</div></div><div class="module-level"><div class="module-level-tag">B1</div><div class="module-level-title">Drempel</div><div class="module-level-desc">Zelfstandig communiceren met patiënten</div></div><div class="module-level"><div class="module-level-tag">B2</div><div class="module-level-title">Gevorderd</div><div class="module-level-desc">Professioneel en genuanceerd communiceren</div></div><div class="module-level"><div class="module-level-tag">C1</div><div class="module-level-title">Vaardig</div><div class="module-level-desc">Vlot en vloeiend in alle contexten</div></div></div>
@@ -314,7 +336,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
   </div>
   <div class="modules-kennisbank reveal"><h3>Kennisbank inbegrepen</h3><p>Naast de modules heb je toegang tot de kennisbank met grammatica- en woordenschatoverzichten, oefeningen en gespecialiseerde terminologie per beroep in de zorg.</p><div class="kennisbank-tags"><span class="kennisbank-tag">Grammatica-overzichten</span><span class="kennisbank-tag">Woordenschat per niveau</span><span class="kennisbank-tag">Dokters &amp; chirurgen</span><span class="kennisbank-tag">Tandartsen</span><span class="kennisbank-tag">Kinesisten</span><span class="kennisbank-tag">Apothekers</span><span class="kennisbank-tag">Verpleegkundigen</span><span class="kennisbank-tag">Extra oefeningen</span></div></div>
   <div class="modules-cta-row reveal">
-    <p class="modules-cta-text">Benieuwd hoe een les eruitziet? <strong>Neem een gratis voorproefje</strong> — een aantal lessen uit verschillende modules en documenten uit de kennisbank staan open voor iedereen.</p>
+    <p class="modules-cta-text">Benieuwd hoe een les eruitziet? <strong>Neem een gratis voorproefje</strong> — lessen uit verschillende modules en documenten uit de kennisbank staan open voor iedereen.</p>
     <a href="https://medicomm.teachable.com/private_pages/20286812?preview=logged_out" target="_blank" class="btn-sneak"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Bekijk een gratis voorproefje</a>
   </div>
 </section>
@@ -328,7 +350,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
   </div>
 </section>
 <div id="itna-nl" style="padding:0 0 96px;">
-  <div class="itna-banner reveal"><div><div class="itna-eyebrow">ITNA — Interuniversitaire Taaltest Nederlands voor Anderstaligen</div><h2 class="itna-title">Heb je (bijna) het juiste niveau?<br><span>Behaal snel je certificaat.</span></h2><p class="itna-desc">De ITNA-test wordt door zowel de universiteiten als de overheid in België en Nederland erkend. Het is een waardevol certificaat dat toegang geeft tot verdere studies of je RIZIV of BIG-nummer. De test bestaat uit twee delen: een schriftelijke test via de computer en een mondelinge test. Via gerichte training op de specifieke onderdelen van deze test en testsimulaties, begeleidt Medicomm je naar je ITNA-test.</p></div><a href="https://www.itna.be/" target="_blank" class="itna-cta">Meer info over ITNA <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  <div class="itna-banner reveal"><div><div class="itna-eyebrow">ITNA — Interuniversitaire Taaltest Nederlands voor Anderstaligen</div><h2 class="itna-title">Heb je (bijna) het juiste niveau?<br><span>Behaal snel je certificaat.</span></h2><p class="itna-desc">De ITNA-test wordt door zowel de universiteiten als de overheid in België en Nederland erkend. Het is een waardevol certificaat dat toegang geeft tot verdere studies of je RIZIV of BIG-nummer. De test bestaat uit twee delen: een schriftelijke test via de computer en een mondelinge test. Via gerichte training en testsimulaties begeleidt Medicomm je naar je ITNA-test.</p></div><a href="https://www.itna.be/" target="_blank" class="itna-cta">Meer info over ITNA <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
 </div>
 <section id="approach-nl">
   <div class="reveal"><div class="section-eyebrow">Onze aanpak</div><h2 class="section-title">Persoonlijk. Precies. Professioneel.</h2><p class="section-intro">Elke medische professional heeft een eigen traject. We beginnen altijd met een gratis intake om uw situatie te begrijpen — en bouwen van daaruit een plan op maat.</p></div>
@@ -347,7 +369,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
   </div>
 </section>
 <section id="contact-nl">
-  <div class="reveal"><div class="section-eyebrow">Contact</div><h2 class="section-title">Begin met een<br>gratis gesprek.</h2><p class="section-intro">Weet je niet goed wat je het best kiest voor jouw situatie, wat je niveau is of heb je extra vragen? Vraag een gratis intake gesprek — we sturen je binnen 24 uur een persoonlijk antwoord.</p></div>
+  <div class="reveal"><div class="section-eyebrow">Contact</div><h2 class="section-title">Begin met een<br>gratis gesprek.</h2><p class="section-intro">Weet je niet goed wat je het best kiest? Vraag een gratis intake gesprek — we sturen je binnen 24 uur een persoonlijk antwoord.</p></div>
   <div class="contact-grid">
     <div class="contact-info reveal">
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="contact-detail-label">Locatie</div><div class="contact-detail-value">België — online &amp; ter plaatse</div></div></div>
@@ -374,32 +396,19 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
     <div><div class="footer-col-title">Informatie</div><ul class="footer-links"><li><a href="#">Over Medicomm</a></li>
 <li><a href="#tiers">Pakketten &amp; prijzen</a></li>
 <li><a href="#">Blog &amp; tips</a></li>
-<li><a href="#" onclick="openModal();return false;">Veelgestelde vragen</a></li>
-<li><a href="#" onclick="openModal();return false;">Getuigenissen</a></li>
+<li><a href="#" class="modal-trigger">Veelgestelde vragen</a></li>
+<li><a href="#" class="modal-trigger">Getuigenissen</a></li>
 </ul></div>
     <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@medicomm.be">info@medicomm.be</a></li>
 <li><a href="#contact">Gratis intake boeken</a></li>
 <li><a href="https://www.linkedin.com/company/medicomm-language-communication-integration/" target="_blank">LinkedIn</a></li>
-<li><a href="#" onclick="openModal();return false;">Privacybeleid</a></li>
-<li><a href="#" onclick="openModal();return false;">Algemene voorwaarden</a></li>
+<li><a href="#" class="modal-trigger">Privacybeleid</a></li>
+<li><a href="#" class="modal-trigger">Algemene voorwaarden</a></li>
 </ul></div>
   </div>
   <div class="footer-bottom"><span class="footer-copy">© 2025 Medicomm. Alle rechten voorbehouden.</span><div class="footer-langs"><a href="#" class="footer-lang">NL</a><a href="#" class="footer-lang">EN</a><a href="#" class="footer-lang">FR</a><a href="#" class="footer-lang">ES</a><a href="#" class="footer-lang">RU</a><a href="#" class="footer-lang">AR</a></div></div>
 </footer>
-</div>
-
-<div id="lang-en" class="lang-section" dir="ltr">
-<nav class="nav-inner">
-  <a href="#" class="nav-logo"><div class="nav-logo-icon"></div><div class="nav-wordmark"><span>medi</span><span>comm</span></div></a>
-  <ul class="nav-links">
-    <li><a href="#modules-en">Language Path</a></li>
-    <li><a href="#services-en">Services</a></li>
-    <li><a href="#tiers-en">Packages</a></li>
-    <li><a href="#contact-en">Contact</a></li>
-    <li><a href="#" class="nav-download" onclick="openModal();return false;"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Downloads</a></li>
-    <li><a href="#contact-en" class="nav-cta">Free intake →</a></li>
-  </ul>
-</nav>
+</div><div id="lang-en" class="lang-section">
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Medicomm · Belgium</div>
@@ -410,7 +419,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <a href="https://medicomm.teachable.com/private_pages/20286812?preview=logged_out" target="_blank" class="btn-primary">Discover the language path <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#contact-en" class="btn-secondary">Free intake →</a>
     </div>
-    <div class="hero-langs"><span class="hero-lang-label">Course languages</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">FR</span><span class="hero-lang-pill">ES</span><span class="hero-lang-pill">AR</span><span class="hero-lang-pill">RU</span></div></div>
+    <div class="hero-langs"><span class="hero-lang-label">Course languages</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">RU</span><span class="hero-lang-pill">AR</span></div></div>
   </div>
   <div class="hero-right">
     <div class="hero-plus-wrap">
@@ -498,32 +507,19 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
     <div><div class="footer-col-title">Information</div><ul class="footer-links"><li><a href="#">About Medicomm</a></li>
 <li><a href="#tiers">Packages &amp; pricing</a></li>
 <li><a href="#">Blog &amp; tips</a></li>
-<li><a href="#" onclick="openModal();return false;">FAQ</a></li>
-<li><a href="#" onclick="openModal();return false;">Testimonials</a></li>
+<li><a href="#" class="modal-trigger">FAQ</a></li>
+<li><a href="#" class="modal-trigger">Testimonials</a></li>
 </ul></div>
     <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@medicomm.be">info@medicomm.be</a></li>
 <li><a href="#contact">Book free intake</a></li>
 <li><a href="https://www.linkedin.com/company/medicomm-language-communication-integration/" target="_blank">LinkedIn</a></li>
-<li><a href="#" onclick="openModal();return false;">Privacy policy</a></li>
-<li><a href="#" onclick="openModal();return false;">Terms &amp; conditions</a></li>
+<li><a href="#" class="modal-trigger">Privacy policy</a></li>
+<li><a href="#" class="modal-trigger">Terms &amp; conditions</a></li>
 </ul></div>
   </div>
   <div class="footer-bottom"><span class="footer-copy">© 2025 Medicomm. All rights reserved.</span><div class="footer-langs"><a href="#" class="footer-lang">NL</a><a href="#" class="footer-lang">EN</a><a href="#" class="footer-lang">FR</a><a href="#" class="footer-lang">ES</a><a href="#" class="footer-lang">RU</a><a href="#" class="footer-lang">AR</a></div></div>
 </footer>
-</div>
-
-<div id="lang-fr" class="lang-section" dir="ltr">
-<nav class="nav-inner">
-  <a href="#" class="nav-logo"><div class="nav-logo-icon"></div><div class="nav-wordmark"><span>medi</span><span>comm</span></div></a>
-  <ul class="nav-links">
-    <li><a href="#modules-fr">Parcours linguistique</a></li>
-    <li><a href="#services-fr">Services</a></li>
-    <li><a href="#tiers-fr">Formules</a></li>
-    <li><a href="#contact-fr">Contact</a></li>
-    <li><a href="#" class="nav-download" onclick="openModal();return false;"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Téléchargements</a></li>
-    <li><a href="#contact-fr" class="nav-cta">Entretien gratuit →</a></li>
-  </ul>
-</nav>
+</div><div id="lang-fr" class="lang-section">
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Medicomm · Belgique</div>
@@ -534,7 +530,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <a href="https://medicomm.teachable.com/private_pages/20286812?preview=logged_out" target="_blank" class="btn-primary">Découvrir le parcours <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#contact-fr" class="btn-secondary">Entretien gratuit →</a>
     </div>
-    <div class="hero-langs"><span class="hero-lang-label">Langues d'enseignement</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">FR</span><span class="hero-lang-pill">ES</span><span class="hero-lang-pill">AR</span><span class="hero-lang-pill">RU</span></div></div>
+    <div class="hero-langs"><span class="hero-lang-label">Langues d'enseignement</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">RU</span><span class="hero-lang-pill">AR</span></div></div>
   </div>
   <div class="hero-right">
     <div class="hero-plus-wrap">
@@ -622,32 +618,19 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
     <div><div class="footer-col-title">Informations</div><ul class="footer-links"><li><a href="#">À propos de Medicomm</a></li>
 <li><a href="#tiers">Formules &amp; tarifs</a></li>
 <li><a href="#">Blog &amp; conseils</a></li>
-<li><a href="#" onclick="openModal();return false;">FAQ</a></li>
-<li><a href="#" onclick="openModal();return false;">Témoignages</a></li>
+<li><a href="#" class="modal-trigger">FAQ</a></li>
+<li><a href="#" class="modal-trigger">Témoignages</a></li>
 </ul></div>
     <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@medicomm.be">info@medicomm.be</a></li>
 <li><a href="#contact">Réserver un entretien gratuit</a></li>
 <li><a href="https://www.linkedin.com/company/medicomm-language-communication-integration/" target="_blank">LinkedIn</a></li>
-<li><a href="#" onclick="openModal();return false;">Politique de confidentialité</a></li>
-<li><a href="#" onclick="openModal();return false;">Conditions générales</a></li>
+<li><a href="#" class="modal-trigger">Politique de confidentialité</a></li>
+<li><a href="#" class="modal-trigger">Conditions générales</a></li>
 </ul></div>
   </div>
   <div class="footer-bottom"><span class="footer-copy">© 2025 Medicomm. Tous droits réservés.</span><div class="footer-langs"><a href="#" class="footer-lang">NL</a><a href="#" class="footer-lang">EN</a><a href="#" class="footer-lang">FR</a><a href="#" class="footer-lang">ES</a><a href="#" class="footer-lang">RU</a><a href="#" class="footer-lang">AR</a></div></div>
 </footer>
-</div>
-
-<div id="lang-es" class="lang-section" dir="ltr">
-<nav class="nav-inner">
-  <a href="#" class="nav-logo"><div class="nav-logo-icon"></div><div class="nav-wordmark"><span>medi</span><span>comm</span></div></a>
-  <ul class="nav-links">
-    <li><a href="#modules-es">Ruta lingüística</a></li>
-    <li><a href="#services-es">Servicios</a></li>
-    <li><a href="#tiers-es">Paquetes</a></li>
-    <li><a href="#contact-es">Contacto</a></li>
-    <li><a href="#" class="nav-download" onclick="openModal();return false;"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Descargas</a></li>
-    <li><a href="#contact-es" class="nav-cta">Consulta gratuita →</a></li>
-  </ul>
-</nav>
+</div><div id="lang-es" class="lang-section">
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Medicomm · Bélgica</div>
@@ -658,7 +641,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <a href="https://medicomm.teachable.com/private_pages/20286812?preview=logged_out" target="_blank" class="btn-primary">Descubrir la ruta lingüística <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#contact-es" class="btn-secondary">Consulta gratuita →</a>
     </div>
-    <div class="hero-langs"><span class="hero-lang-label">Idiomas del curso</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">FR</span><span class="hero-lang-pill">ES</span><span class="hero-lang-pill">AR</span><span class="hero-lang-pill">RU</span></div></div>
+    <div class="hero-langs"><span class="hero-lang-label">Idiomas del curso</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">RU</span><span class="hero-lang-pill">AR</span></div></div>
   </div>
   <div class="hero-right">
     <div class="hero-plus-wrap">
@@ -746,32 +729,19 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
     <div><div class="footer-col-title">Información</div><ul class="footer-links"><li><a href="#">Sobre Medicomm</a></li>
 <li><a href="#tiers">Paquetes &amp; precios</a></li>
 <li><a href="#">Blog &amp; consejos</a></li>
-<li><a href="#" onclick="openModal();return false;">Preguntas frecuentes</a></li>
-<li><a href="#" onclick="openModal();return false;">Testimonios</a></li>
+<li><a href="#" class="modal-trigger">Preguntas frecuentes</a></li>
+<li><a href="#" class="modal-trigger">Testimonios</a></li>
 </ul></div>
     <div><div class="footer-col-title">Contacto</div><ul class="footer-links"><li><a href="mailto:info@medicomm.be">info@medicomm.be</a></li>
 <li><a href="#contact">Reservar consulta gratuita</a></li>
 <li><a href="https://www.linkedin.com/company/medicomm-language-communication-integration/" target="_blank">LinkedIn</a></li>
-<li><a href="#" onclick="openModal();return false;">Política de privacidad</a></li>
-<li><a href="#" onclick="openModal();return false;">Términos y condiciones</a></li>
+<li><a href="#" class="modal-trigger">Política de privacidad</a></li>
+<li><a href="#" class="modal-trigger">Términos y condiciones</a></li>
 </ul></div>
   </div>
   <div class="footer-bottom"><span class="footer-copy">© 2025 Medicomm. Todos los derechos reservados.</span><div class="footer-langs"><a href="#" class="footer-lang">NL</a><a href="#" class="footer-lang">EN</a><a href="#" class="footer-lang">FR</a><a href="#" class="footer-lang">ES</a><a href="#" class="footer-lang">RU</a><a href="#" class="footer-lang">AR</a></div></div>
 </footer>
-</div>
-
-<div id="lang-ru" class="lang-section" dir="ltr">
-<nav class="nav-inner">
-  <a href="#" class="nav-logo"><div class="nav-logo-icon"></div><div class="nav-wordmark"><span>medi</span><span>comm</span></div></a>
-  <ul class="nav-links">
-    <li><a href="#modules-ru">Языковой путь</a></li>
-    <li><a href="#services-ru">Услуги</a></li>
-    <li><a href="#tiers-ru">Пакеты</a></li>
-    <li><a href="#contact-ru">Контакт</a></li>
-    <li><a href="#" class="nav-download" onclick="openModal();return false;"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Загрузки</a></li>
-    <li><a href="#contact-ru" class="nav-cta">Бесплатная консультация →</a></li>
-  </ul>
-</nav>
+</div><div id="lang-ru" class="lang-section">
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Medicomm · Бельгия</div>
@@ -782,7 +752,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <a href="https://medicomm.teachable.com/private_pages/20286812?preview=logged_out" target="_blank" class="btn-primary">Узнать о языковом пути <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#contact-ru" class="btn-secondary">Бесплатная консультация →</a>
     </div>
-    <div class="hero-langs"><span class="hero-lang-label">Языки обучения</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">FR</span><span class="hero-lang-pill">ES</span><span class="hero-lang-pill">AR</span><span class="hero-lang-pill">RU</span></div></div>
+    <div class="hero-langs"><span class="hero-lang-label">Языки обучения</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">RU</span><span class="hero-lang-pill">AR</span></div></div>
   </div>
   <div class="hero-right">
     <div class="hero-plus-wrap">
@@ -870,42 +840,19 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
     <div><div class="footer-col-title">Информация</div><ul class="footer-links"><li><a href="#">О Medicomm</a></li>
 <li><a href="#tiers">Пакеты &amp; цены</a></li>
 <li><a href="#">Блог &amp; советы</a></li>
-<li><a href="#" onclick="openModal();return false;">Частые вопросы</a></li>
-<li><a href="#" onclick="openModal();return false;">Отзывы</a></li>
+<li><a href="#" class="modal-trigger">Частые вопросы</a></li>
+<li><a href="#" class="modal-trigger">Отзывы</a></li>
 </ul></div>
     <div><div class="footer-col-title">Контакт</div><ul class="footer-links"><li><a href="mailto:info@medicomm.be">info@medicomm.be</a></li>
 <li><a href="#contact">Записаться на бесплатную консультацию</a></li>
 <li><a href="https://www.linkedin.com/company/medicomm-language-communication-integration/" target="_blank">LinkedIn</a></li>
-<li><a href="#" onclick="openModal();return false;">Политика конфиденциальности</a></li>
-<li><a href="#" onclick="openModal();return false;">Условия использования</a></li>
+<li><a href="#" class="modal-trigger">Политика конфиденциальности</a></li>
+<li><a href="#" class="modal-trigger">Условия использования</a></li>
 </ul></div>
   </div>
   <div class="footer-bottom"><span class="footer-copy">© 2025 Medicomm. Все права защищены.</span><div class="footer-langs"><a href="#" class="footer-lang">NL</a><a href="#" class="footer-lang">EN</a><a href="#" class="footer-lang">FR</a><a href="#" class="footer-lang">ES</a><a href="#" class="footer-lang">RU</a><a href="#" class="footer-lang">AR</a></div></div>
 </footer>
-</div>
-<style>
-    #lang-ar{direction:rtl;text-align:right;}
-    #lang-ar .hero-left{padding:80px 80px 80px 64px;}
-    #lang-ar .hero-right{border-left:none;border-right:1px solid var(--green-mid);}
-    #lang-ar .section-eyebrow{flex-direction:row-reverse;justify-content:flex-end;}
-    #lang-ar .tier-features li{flex-direction:row-reverse;}
-    #lang-ar .contact-detail{flex-direction:row-reverse;}
-    #lang-ar .module-feature{flex-direction:row-reverse;}
-    #lang-ar .hero-pill{flex-direction:row-reverse;}
-    #lang-ar .itna-banner{border-left:1px solid var(--green-mid);border-right:4px solid var(--green);}
-    </style>
-<div id="lang-ar" class="lang-section" dir="rtl">
-<nav class="nav-inner">
-  <a href="#" class="nav-logo"><div class="nav-logo-icon"></div><div class="nav-wordmark"><span>medi</span><span>comm</span></div></a>
-  <ul class="nav-links">
-    <li><a href="#modules-ar">المسار اللغوي</a></li>
-    <li><a href="#services-ar">الخدمات</a></li>
-    <li><a href="#tiers-ar">الباقات</a></li>
-    <li><a href="#contact-ar">اتصل بنا</a></li>
-    <li><a href="#" class="nav-download" onclick="openModal();return false;"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>التنزيلات</a></li>
-    <li><a href="#contact-ar" class="nav-cta">استشارة مجانية →</a></li>
-  </ul>
-</nav>
+</div><div id="lang-ar" class="lang-section" style="direction:rtl;text-align:right;">
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">Medicomm · بلجيكا</div>
@@ -916,7 +863,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <a href="https://medicomm.teachable.com/private_pages/20286812?preview=logged_out" target="_blank" class="btn-primary">اكتشف المسار اللغوي <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#contact-ar" class="btn-secondary">استشارة مجانية →</a>
     </div>
-    <div class="hero-langs"><span class="hero-lang-label">لغات التدريس</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">FR</span><span class="hero-lang-pill">ES</span><span class="hero-lang-pill">AR</span><span class="hero-lang-pill">RU</span></div></div>
+    <div class="hero-langs"><span class="hero-lang-label">لغات التدريس</span><div class="hero-lang-pills"><span class="hero-lang-pill">NL</span><span class="hero-lang-pill">EN</span><span class="hero-lang-pill">RU</span><span class="hero-lang-pill">AR</span></div></div>
   </div>
   <div class="hero-right">
     <div class="hero-plus-wrap">
@@ -1004,14 +951,14 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
     <div><div class="footer-col-title">معلومات</div><ul class="footer-links"><li><a href="#">عن Medicomm</a></li>
 <li><a href="#tiers">الباقات &amp; الأسعار</a></li>
 <li><a href="#">مدونة &amp; نصائح</a></li>
-<li><a href="#" onclick="openModal();return false;">الأسئلة الشائعة</a></li>
-<li><a href="#" onclick="openModal();return false;">شهادات العملاء</a></li>
+<li><a href="#" class="modal-trigger">الأسئلة الشائعة</a></li>
+<li><a href="#" class="modal-trigger">شهادات العملاء</a></li>
 </ul></div>
     <div><div class="footer-col-title">اتصل بنا</div><ul class="footer-links"><li><a href="mailto:info@medicomm.be">info@medicomm.be</a></li>
 <li><a href="#contact">احجز استشارة مجانية</a></li>
 <li><a href="https://www.linkedin.com/company/medicomm-language-communication-integration/" target="_blank">LinkedIn</a></li>
-<li><a href="#" onclick="openModal();return false;">سياسة الخصوصية</a></li>
-<li><a href="#" onclick="openModal();return false;">الشروط والأحكام</a></li>
+<li><a href="#" class="modal-trigger">سياسة الخصوصية</a></li>
+<li><a href="#" class="modal-trigger">الشروط والأحكام</a></li>
 </ul></div>
   </div>
   <div class="footer-bottom"><span class="footer-copy">© 2025 Medicomm. جميع الحقوق محفوظة.</span><div class="footer-langs"><a href="#" class="footer-lang">NL</a><a href="#" class="footer-lang">EN</a><a href="#" class="footer-lang">FR</a><a href="#" class="footer-lang">ES</a><a href="#" class="footer-lang">RU</a><a href="#" class="footer-lang">AR</a></div></div>
@@ -1019,56 +966,125 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
 </div>
 
 <script>
-function openModal() { document.getElementById('downloadsModal').classList.add('open'); }
-document.getElementById('downloadsModal').addEventListener('click', function(e) { if(e.target===this) this.classList.remove('open'); });
+var LANGS = ['nl','en','fr','es','ru','ar'];
+var NAV = {"nl": {"taaltraject": "Taaltraject", "diensten": "Diensten", "pakketten": "Pakketten", "contact": "Contact", "downloads": "Downloads", "intake": "Gratis intake →"}, "en": {"taaltraject": "Language Path", "diensten": "Services", "pakketten": "Packages", "contact": "Contact", "downloads": "Downloads", "intake": "Free intake →"}, "fr": {"taaltraject": "Parcours linguistique", "diensten": "Services", "pakketten": "Formules", "contact": "Contact", "downloads": "Téléchargements", "intake": "Entretien gratuit →"}, "es": {"taaltraject": "Ruta lingüística", "diensten": "Servicios", "pakketten": "Paquetes", "contact": "Contacto", "downloads": "Descargas", "intake": "Consulta gratuita →"}, "ru": {"taaltraject": "Языковой путь", "diensten": "Услуги", "pakketten": "Пакеты", "contact": "Контакт", "downloads": "Загрузки", "intake": "Бесплатная консультация →"}, "ar": {"taaltraject": "المسار اللغوي", "diensten": "الخدمات", "pakketten": "الباقات", "contact": "اتصل بنا", "downloads": "التنزيلات", "intake": "استشارة مجانية →"}};
+var MODAL = {"nl": {"title": "Downloads", "intro": "Meer informatie over de sprekers, trainingen en workshops van Medicomm. Klik om te downloaden.", "dl1": "Spreker — Info &amp; Onderwerpen", "dl2": "Trainingen &amp; Workshops", "dl3": "Medicomm — Overzicht &amp; Referenties", "note": "Documenten worden regelmatig bijgewerkt. Laatste versie: 2025."}, "en": {"title": "Downloads", "intro": "More information about Medicomm speakers, training and workshops. Click to download.", "dl1": "Speaker — Info &amp; Topics", "dl2": "Training &amp; Workshops", "dl3": "Medicomm — Overview &amp; References", "note": "Documents are regularly updated. Latest version: 2025."}, "fr": {"title": "Téléchargements", "intro": "Plus d'informations sur les conférenciers, formations et ateliers de Medicomm. Cliquez pour télécharger.", "dl1": "Conférencier — Info &amp; Sujets", "dl2": "Formations &amp; Ateliers", "dl3": "Medicomm — Aperçu &amp; Références", "note": "Documents régulièrement mis à jour. Dernière version : 2025."}, "es": {"title": "Descargas", "intro": "Más información sobre los conferenciantes, formaciones y talleres de Medicomm. Haga clic para descargar.", "dl1": "Conferenciante — Info &amp; Temas", "dl2": "Formaciones &amp; Talleres", "dl3": "Medicomm — Resumen &amp; Referencias", "note": "Documentos actualizados regularmente. Última versión: 2025."}, "ru": {"title": "Загрузки", "intro": "Дополнительная информация о спикерах, тренингах и воркшопах Medicomm. Нажмите для загрузки.", "dl1": "Спикер — Информация &amp; Темы", "dl2": "Тренинги &amp; Воркшопы", "dl3": "Medicomm — Обзор &amp; Рекомендации", "note": "Документы регулярно обновляются. Последняя версия: 2025."}, "ar": {"title": "التنزيلات", "intro": "مزيد من المعلومات حول المحاضرين والتدريبات وورش العمل في Medicomm. انقر للتنزيل.", "dl1": "المحاضر — معلومات &amp; مواضيع", "dl2": "التدريبات &amp; ورش العمل", "dl3": "Medicomm — نظرة عامة &amp; مراجع", "note": "يتم تحديث الوثائق بانتظام. آخر نسخة: 2025."}};
+var currentLang = 'nl';
 
-const modalTexts = {
-  nl: { title:'Downloads', intro:'Meer informatie over de sprekers, trainingen en workshops van Medicomm.', note:'Documenten worden regelmatig bijgewerkt. Laatste versie: 2025.', dl1:'Spreker — Info &amp; Onderwerpen', dl2:'Trainingen &amp; Workshops', dl3:'Medicomm — Overzicht &amp; Referenties' },
-  en: { title:'Downloads', intro:'More information about Medicomm speakers, training and workshops.', note:'Documents are regularly updated. Latest version: 2025.', dl1:'Speaker — Info &amp; Topics', dl2:'Training &amp; Workshops', dl3:'Medicomm — Overview &amp; References' },
-  fr: { title:'Téléchargements', intro:'Plus d'informations sur les conférenciers, formations et ateliers de Medicomm.', note:'Documents régulièrement mis à jour. Dernière version : 2025.', dl1:'Conférencier — Info &amp; Sujets', dl2:'Formations &amp; Ateliers', dl3:'Medicomm — Aperçu &amp; Références' },
-  es: { title:'Descargas', intro:'Más información sobre los conferenciantes, formaciones y talleres de Medicomm.', note:'Documentos actualizados regularmente. Última versión: 2025.', dl1:'Conferenciante — Info &amp; Temas', dl2:'Formaciones &amp; Talleres', dl3:'Medicomm — Resumen &amp; Referencias' },
-  ru: { title:'Загрузки', intro:'Дополнительная информация о спикерах, тренингах и воркшопах Medicomm.', note:'Документы регулярно обновляются. Последняя версия: 2025.', dl1:'Спикер — Информация &amp; Темы', dl2:'Тренинги &amp; Воркшопы', dl3:'Medicomm — Обзор &amp; Рекомендации' },
-  ar: { title:'التنزيلات', intro:'مزيد من المعلومات حول المحاضرين والتدريبات وورش العمل في Medicomm.', note:'يتم تحديث الوثائق بانتظام. آخر نسخة: 2025.', dl1:'المحاضر — معلومات &amp; مواضيع', dl2:'التدريبات &amp; ورش العمل', dl3:'Medicomm — نظرة عامة &amp; مراجع' }
-};
-let currentLang = 'nl';
+function showModal() {
+  document.getElementById('modal').style.display = 'flex';
+}
+function hideModal() {
+  document.getElementById('modal').style.display = 'none';
+}
 
 function switchLang(lang) {
-  document.querySelectorAll('.lang-section').forEach(s => s.style.display = 'none');
-  document.getElementById('lang-' + lang).style.display = 'block';
-  document.querySelectorAll('#lang-switcher-fixed button').forEach(b => b.classList.remove('active'));
-  document.getElementById('btn-' + lang).classList.add('active');
+  // Verberg alle secties
+  for (var i = 0; i < LANGS.length; i++) {
+    var el = document.getElementById('lang-' + LANGS[i]);
+    if (el) el.style.display = 'none';
+  }
+  // Toon gekozen taal
+  var target = document.getElementById('lang-' + lang);
+  if (target) target.style.display = 'block';
+
+  // Update knoppen
+  for (var i = 0; i < LANGS.length; i++) {
+    var btn = document.getElementById('lb-' + LANGS[i]);
+    if (btn) btn.classList.remove('active');
+  }
+  var activeBtn = document.getElementById('lb-' + lang);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  // RTL
+  var isRTL = lang === 'ar';
+  document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
   document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  const m = modalTexts[lang];
-  document.getElementById('modal-title-txt').innerHTML = m.title;
-  document.getElementById('modal-intro-txt').innerHTML = m.intro;
-  document.getElementById('modal-note-txt').innerHTML = m.note;
-  document.getElementById('dl1-title').innerHTML = m.dl1;
-  document.getElementById('dl2-title').innerHTML = m.dl2;
-  document.getElementById('dl3-title').innerHTML = m.dl3;
+
+  // Update nav
+  var n = NAV[lang];
+  if (n) {
+    document.getElementById('nav-taaltraject').textContent = n.taaltraject;
+    document.getElementById('nav-taaltraject').href = '#modules-' + lang;
+    document.getElementById('nav-diensten').textContent = n.diensten;
+    document.getElementById('nav-diensten').href = '#services-' + lang;
+    document.getElementById('nav-pakketten').textContent = n.pakketten;
+    document.getElementById('nav-pakketten').href = '#tiers-' + lang;
+    document.getElementById('nav-contact').textContent = n.contact;
+    document.getElementById('nav-contact').href = '#contact-' + lang;
+    document.getElementById('nav-dl-txt').textContent = n.downloads;
+    document.getElementById('nav-intake').textContent = n.intake;
+    document.getElementById('nav-intake').href = '#contact-' + lang;
+  }
+
+  // Update modal
+  var m = MODAL[lang];
+  if (m) {
+    document.getElementById('modal-title').innerHTML = m.title;
+    document.getElementById('modal-intro').innerHTML = m.intro;
+    document.getElementById('dl1').innerHTML = m.dl1;
+    document.getElementById('dl2').innerHTML = m.dl2;
+    document.getElementById('dl3').innerHTML = m.dl3;
+    document.getElementById('modal-note').innerHTML = m.note;
+  }
+
   currentLang = lang;
   window.scrollTo(0, 0);
-  setTimeout(() => {
-    document.querySelectorAll('#lang-' + lang + ' .reveal').forEach(el => el.classList.remove('visible'));
+
+  // Reveal animaties
+  setTimeout(function() {
+    var items = document.querySelectorAll('#lang-' + lang + ' .reveal');
+    for (var i = 0; i < items.length; i++) {
+      items[i].classList.remove('visible');
+    }
     setupReveals(lang);
-  }, 50);
+  }, 60);
 }
 
 function setupReveals(lang) {
-  const selector = lang ? '#lang-' + lang + ' .reveal' : '.reveal';
-  const reveals = document.querySelectorAll(selector);
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  var items = document.querySelectorAll('#lang-' + lang + ' .reveal');
+  var obs = new IntersectionObserver(function(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) entries[i].target.classList.add('visible');
+    }
   }, { threshold: 0.08 });
-  reveals.forEach(el => obs.observe(el));
+  for (var i = 0; i < items.length; i++) {
+    obs.observe(items[i]);
+  }
 }
 
-document.getElementById('lang-nl').style.display = 'block';
-setupReveals('nl');
+// Init: event listeners voor knoppen (geen inline onclick)
+for (var i = 0; i < LANGS.length; i++) {
+  (function(l) {
+    var btn = document.getElementById('lb-' + l);
+    if (btn) btn.addEventListener('click', function() { switchLang(l); });
+  })(LANGS[i]);
+}
 
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.nav-inner').forEach(nav => nav.classList.toggle('scrolled', window.scrollY > 20));
+// Modal triggers
+document.getElementById('nav-downloads').addEventListener('click', function(e) {
+  e.preventDefault(); showModal();
 });
+document.getElementById('modal-close').addEventListener('click', hideModal);
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) hideModal();
+});
+
+// Modal triggers in footer (class modal-trigger)
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.classList.contains('modal-trigger')) {
+    e.preventDefault();
+    showModal();
+  }
+});
+
+// Nav scroll
+window.addEventListener('scroll', function() {
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Toon NL bij laden
+switchLang('nl');
 </script>
 </body>
 </html>
