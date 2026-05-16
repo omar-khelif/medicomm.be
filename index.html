@@ -1,3 +1,25 @@
+Bureaubladmeldingen aanzetten voor Gmail.
+   OK  Nee, bedankt
+3 van 4.719
+Dynamische website html code
+Inbox
+
+Griet Leyers
+Bijlagen
+09:26 (11 uur geleden)
+aan mij
+
+Omdat het niet leesbaar was op smartphone.
+
+--
+Griet Leyers, taal- en communicatietrainer
+0487/67 62 31
+gjar.leyers@gmail.com
+
+
+
+ Eén bijlage
+  •  Gescand door Gmail
 <!DOCTYPE html>
 <html lang="nl" dir="ltr">
 <head>
@@ -208,10 +230,100 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}.reveal-delay-3{transition-delay:0.3s;}.reveal-delay-4{transition-delay:0.4s;}
 
+/* ── RESPONSIVE — TABLET (max 900px) ── */
+@media(max-width:900px){
+  section{padding:64px 32px;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:100px 32px 56px;}
+  .hero-desc{max-width:100%;}
+  .modules-intro-grid{grid-template-columns:1fr;gap:32px;}
+  .modules-levels{grid-template-columns:repeat(3,1fr);}
+  .services-intro-row{grid-template-columns:1fr;}
+  .services-count{display:none;}
+  .services-grid{grid-template-columns:1fr;}
+  .approach-grid{grid-template-columns:1fr;}
+  .tiers-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;gap:40px;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
+  .itna-banner{grid-template-columns:1fr;gap:24px;margin:0 32px 64px;}
+  #main-nav{padding:0 24px;}
+  #lang-bar{top:78px;}
+}
+
+/* ── RESPONSIVE — MOBIEL (max 600px) ── */
+@media(max-width:600px){
+  /* Basis */
+  html{overflow-x:hidden;}
+  body{overflow-x:hidden;}
+  section{padding:48px 20px;}
+
+  /* Nav */
+  #main-nav{padding:0 16px;height:64px;}
+  #main-nav .nav-links{display:none;}
+  #lang-bar{top:70px;right:0;border-radius:0 0 0 8px;padding:4px 6px;}
+  #lang-bar button{padding:4px 6px;font-size:10px;}
+
+  /* Hero */
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:64px;}
+  .hero-right{display:none;}
+  .hero-left{padding:40px 20px 48px;}
+  .hero-title{font-size:clamp(32px,8vw,48px);letter-spacing:-1px;}
+  .hero-subtitle{font-size:16px;}
+  .hero-desc{font-size:14px;max-width:100%;}
+  .hero-actions{flex-direction:column;gap:12px;}
+  .hero-actions a{width:100%;justify-content:center;}
+  .hero-langs{flex-wrap:wrap;gap:8px;}
+
+  /* Intro strip */
+  .intro-strip{flex-direction:column;padding:24px 20px;gap:20px;}
+  .intro-strip a{width:100%;justify-content:center;}
+
+  /* Modules */
+  .section-title{font-size:clamp(22px,6vw,34px);letter-spacing:-0.5px;}
+  .modules-intro-grid{grid-template-columns:1fr;gap:24px;}
+  .modules-levels{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .modules-features{grid-template-columns:1fr;gap:12px;}
+  .modules-kennisbank{padding:24px 20px;}
+  .modules-cta-row{flex-direction:column;padding:20px;gap:16px;}
+  .modules-cta-row a{width:100%;justify-content:center;}
+
+  /* Services */
+  .services-intro-row{grid-template-columns:1fr;}
+  .services-count{display:none;}
+  .services-grid{grid-template-columns:1fr;}
+  .service-card{padding:28px 20px;}
+
+  /* ITNA */
+  .itna-banner{margin:0 0 48px;padding:28px 20px;grid-template-columns:1fr;gap:20px;border-radius:8px;}
+  .itna-cta{width:100%;justify-content:center;}
+
+  /* Approach */
+  .approach-grid{grid-template-columns:1fr;gap:12px;margin-top:32px;}
+
+  /* Tiers */
+  .tiers-grid{grid-template-columns:1fr;gap:16px;margin-top:32px;}
+  .tier-card{padding:28px 20px;}
+
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr;gap:32px;}
+  .form-row{grid-template-columns:1fr;}
+  .form-submit{width:100%;justify-content:center;}
+
+  /* Footer */
+  .footer-top{grid-template-columns:1fr;gap:28px;}
+  footer{padding:40px 20px 28px;}
+  .footer-bottom{flex-direction:column;gap:12px;align-items:flex-start;}
+  .footer-langs{flex-wrap:wrap;}
+
+  /* Modal */
+  .modal-inner,div.modal{padding:28px 20px !important;border-radius:12px !important;}
+}
+
 
 
 /* Lang sections */
-.lang-section { display: none; }
+.lang-section { display: none; overflow-x: hidden; }
 
 /* Taalwisselaar — onder de nav, rechts uitgelijnd */
 #lang-bar {
