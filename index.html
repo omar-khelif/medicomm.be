@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="nl" dir="ltr">
 <head>
@@ -238,13 +237,27 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
   section{padding:48px 20px;}
 
   /* Nav */
-  #main-nav{padding:0 16px;height:64px;}
+  #main-nav{padding:0 16px;height:auto;min-height:64px;flex-wrap:wrap;align-items:center;row-gap:0;}
+  #main-nav .nav-logo{height:64px;display:flex;align-items:center;}
   #main-nav .nav-links{display:none;}
-  #lang-bar{top:70px;right:0;border-radius:0 0 0 8px;padding:4px 6px;}
-  #lang-bar button{padding:4px 6px;font-size:10px;}
 
+  /* Lang-bar: op mobiel niet zwevend maar gewoon onder de nav als een volledige balk */
+  #lang-bar{
+    position:fixed;top:64px;left:0;right:0;
+    border-left:none;border-bottom:1px solid var(--green-mid);border-top:1px solid var(--green-mid);
+    border-radius:0;
+    padding:6px 16px;
+    display:flex;gap:6px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  }
+  #lang-bar::-webkit-scrollbar{display:none;}
+  #lang-bar button{padding:5px 10px;font-size:11px;white-space:nowrap;flex-shrink:0;}
+
+  /* Hero padding-top aanpassen want lang-bar neemt nu extra ruimte (64px nav + ~36px lang-bar = 100px) */
   /* Hero */
-  .hero{grid-template-columns:1fr;min-height:auto;padding-top:64px;}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:100px;}
   .hero-right{display:none;}
   .hero-left{padding:40px 20px 48px;}
   .hero-title{font-size:clamp(32px,8vw,48px);letter-spacing:-1px;}
@@ -275,7 +288,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
 
   /* ITNA */
   .itna-banner{margin:0 0 48px;padding:28px 20px;grid-template-columns:1fr;gap:20px;border-radius:8px;}
-  .itna-cta{width:100%;justify-content:center;}
+  .itna-cta{width:100%;justify-content:center;white-space:normal;text-align:center;}
 
   /* Approach */
   .approach-grid{grid-template-columns:1fr;gap:12px;margin-top:32px;}
