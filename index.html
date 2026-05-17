@@ -229,47 +229,69 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
   #lang-bar{top:78px;}
 }
 
+/* ── HAMBURGER MENU ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:0;z-index:102;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--charcoal);border-radius:2px;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:101;background:white;flex-direction:column;padding:100px 32px 40px;gap:0;overflow-y:auto;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Outfit',sans-serif;font-size:22px;font-weight:600;color:var(--charcoal);text-decoration:none;padding:16px 0;border-bottom:1px solid var(--green-mid);display:block;}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a.mob-cta{margin-top:24px;background:var(--green);color:white;text-align:center;padding:16px;border-radius:6px;border:none;font-size:16px;}
+.mobile-menu .mob-lang-row{display:flex;gap:8px;flex-wrap:wrap;padding-top:24px;margin-top:8px;}
+.mobile-menu .mob-lang-row button{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:1.5px;color:var(--grey);background:none;border:1px solid var(--grey-light);border-radius:3px;padding:6px 10px;cursor:pointer;text-transform:uppercase;}
+.mobile-menu .mob-lang-row button.active,.mobile-menu .mob-lang-row button:hover{color:var(--green);border-color:var(--green);background:var(--green-light);}
+
+/* ── RESPONSIVE — TABLET (max 960px) ── */
+@media(max-width:960px){
+  html{overflow-x:hidden;}
+  body{overflow-x:hidden;}
+  section{padding:64px 32px;}
+  .hero-left{padding:100px 32px 56px;}
+  .hero-desc{max-width:100%;}
+  .modules-intro-grid{grid-template-columns:1fr;gap:32px;}
+  .modules-levels{grid-template-columns:repeat(3,1fr);}
+  .services-intro-row{grid-template-columns:1fr;}
+  .services-count{display:none;}
+  .services-grid{grid-template-columns:1fr;}
+  .approach-grid{grid-template-columns:1fr;}
+  .tiers-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;gap:40px;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
+  .itna-banner{grid-template-columns:1fr;gap:24px;margin:0 32px 64px;}
+  #main-nav{padding:0 24px;}
+  #lang-bar{top:78px;}
+}
+
 /* ── RESPONSIVE — MOBIEL (max 600px) ── */
 @media(max-width:600px){
-  /* Basis */
   html{overflow-x:hidden;}
   body{overflow-x:hidden;}
   section{padding:48px 20px;}
 
-  /* Nav */
-  #main-nav{padding:0 16px;height:auto;min-height:64px;flex-wrap:wrap;align-items:center;row-gap:0;}
-  #main-nav .nav-logo{height:64px;display:flex;align-items:center;}
-  #main-nav .nav-links{display:none;}
+  /* Nav: toon hamburger, verberg desktop links en lang-bar */
+  #main-nav{padding:0 16px;height:64px;}
+  #main-nav .nav-links{display:none !important;}
+  #lang-bar{display:none !important;}
+  .hamburger{display:flex;}
 
-  /* Lang-bar: op mobiel niet zwevend maar gewoon onder de nav als een volledige balk */
-  #lang-bar{
-    position:fixed;top:64px;left:0;right:0;
-    border-left:none;border-bottom:1px solid var(--green-mid);border-top:1px solid var(--green-mid);
-    border-radius:0;
-    padding:6px 16px;
-    display:flex;gap:6px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
-  }
-  #lang-bar::-webkit-scrollbar{display:none;}
-  #lang-bar button{padding:5px 10px;font-size:11px;white-space:nowrap;flex-shrink:0;}
-
-  /* Hero padding-top aanpassen want lang-bar neemt nu extra ruimte (64px nav + ~36px lang-bar = 100px) */
-  /* Hero */
-  .hero{grid-template-columns:1fr;min-height:auto;padding-top:100px;}
+  /* Hero: ruimte voor nav (64px) */
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:64px;}
   .hero-right{display:none;}
   .hero-left{padding:40px 20px 48px;}
   .hero-title{font-size:clamp(32px,8vw,48px);letter-spacing:-1px;}
   .hero-subtitle{font-size:16px;}
   .hero-desc{font-size:14px;max-width:100%;}
   .hero-actions{flex-direction:column;gap:12px;}
-  .hero-actions a{width:100%;justify-content:center;}
+  .hero-actions a{width:100%;justify-content:center;text-align:center;}
   .hero-langs{flex-wrap:wrap;gap:8px;}
 
   /* Intro strip */
   .intro-strip{flex-direction:column;padding:24px 20px;gap:20px;}
-  .intro-strip a{width:100%;justify-content:center;}
+  .intro-strip a{width:100%;justify-content:center;text-align:center;}
 
   /* Modules */
   .section-title{font-size:clamp(22px,6vw,34px);letter-spacing:-0.5px;}
@@ -278,7 +300,7 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
   .modules-features{grid-template-columns:1fr;gap:12px;}
   .modules-kennisbank{padding:24px 20px;}
   .modules-cta-row{flex-direction:column;padding:20px;gap:16px;}
-  .modules-cta-row a{width:100%;justify-content:center;}
+  .modules-cta-row a{width:100%;justify-content:center;text-align:center;}
 
   /* Services */
   .services-intro-row{grid-template-columns:1fr;}
@@ -383,7 +405,28 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
     </a></li>
     <li><a id="nav-intake" href="#contact-nl" class="nav-cta">Gratis intake →</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobiel menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a id="mob-taaltraject" href="#modules-nl">Taaltraject</a>
+  <a id="mob-diensten" href="#services-nl">Diensten</a>
+  <a id="mob-pakketten" href="#tiers-nl">Pakketten</a>
+  <a id="mob-contact" href="#contact-nl">Contact</a>
+  <a href="#" id="mob-downloads">Downloads</a>
+  <a id="mob-intake" href="#contact-nl" class="mob-cta">Gratis intake →</a>
+  <div class="mob-lang-row" id="mob-lang-row">
+    <button data-lang="nl" class="active">NL</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="fr">FR</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="ru">RU</button>
+    <button data-lang="ar">AR</button>
+  </div>
+</div>
 
 <!-- Downloads modal -->
 <div id="modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
@@ -1119,6 +1162,18 @@ function switchLang(lang) {
     document.getElementById('nav-dl-txt').textContent = n.downloads;
     document.getElementById('nav-intake').textContent = n.intake;
     document.getElementById('nav-intake').href = '#contact-' + lang;
+    // Mobiel menu
+    document.getElementById('mob-taaltraject').textContent = n.taaltraject;
+    document.getElementById('mob-taaltraject').href = '#modules-' + lang;
+    document.getElementById('mob-diensten').textContent = n.diensten;
+    document.getElementById('mob-diensten').href = '#services-' + lang;
+    document.getElementById('mob-pakketten').textContent = n.pakketten;
+    document.getElementById('mob-pakketten').href = '#tiers-' + lang;
+    document.getElementById('mob-contact').textContent = n.contact;
+    document.getElementById('mob-contact').href = '#contact-' + lang;
+    document.getElementById('mob-downloads').textContent = n.downloads;
+    document.getElementById('mob-intake').textContent = n.intake;
+    document.getElementById('mob-intake').href = '#contact-' + lang;
   }
 
   // Update modal
@@ -1133,6 +1188,13 @@ function switchLang(lang) {
   }
 
   currentLang = lang;
+
+  // Sync mobiele taalknopjes
+  var mLangBtns = document.querySelectorAll('#mob-lang-row button');
+  for (var mi = 0; mi < mLangBtns.length; mi++) {
+    mLangBtns[mi].classList.toggle('active', mLangBtns[mi].getAttribute('data-lang') === lang);
+  }
+
   window.scrollTo(0, 0);
 
   // Reveal animaties
@@ -1186,6 +1248,56 @@ document.addEventListener('click', function(e) {
 window.addEventListener('scroll', function() {
   document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 20);
 });
+
+// Hamburger menu
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobile-menu');
+
+function closeMobileMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', function() {
+  var isOpen = mobileMenu.classList.contains('open');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+});
+
+// Mobiele menu links sluiten het menu en navigeren
+var mobLinks = mobileMenu.querySelectorAll('a:not(#mob-downloads):not(.mob-cta)');
+for (var i = 0; i < mobLinks.length; i++) {
+  mobLinks[i].addEventListener('click', function() { closeMobileMenu(); });
+}
+var mobIntake = document.getElementById('mob-intake');
+if (mobIntake) mobIntake.addEventListener('click', function() { closeMobileMenu(); });
+
+// Downloads via mobiel menu
+var mobDownloads = document.getElementById('mob-downloads');
+if (mobDownloads) {
+  mobDownloads.addEventListener('click', function(e) {
+    e.preventDefault();
+    closeMobileMenu();
+    setTimeout(showModal, 200);
+  });
+}
+
+// Taalwisseling via mobiel menu
+var mobLangBtns = document.querySelectorAll('#mob-lang-row button');
+for (var j = 0; j < mobLangBtns.length; j++) {
+  (function(btn) {
+    btn.addEventListener('click', function() {
+      switchLang(btn.getAttribute('data-lang'));
+      closeMobileMenu();
+    });
+  })(mobLangBtns[j]);
+}
 
 // Toon NL bij laden
 switchLang('nl');
