@@ -534,54 +534,65 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-detail-label">E-mail</div><div class="contact-detail-value">info@medicomm.be</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-detail-label">Reactietijd</div><div class="contact-detail-value">Binnen 24 uur op werkdagen</div></div></div>
     </div>
-    <form action="https://api.web3forms.com/submit" method="POST" className="contact-form reveal reveal-delay-2">
-  {/* Web3Forms Access Key */}
-  <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b" />
+<form action="https://api.web3forms.com/submit" method="POST">
 
-  <div className="form-row">
-    <div className="form-group">
-      <label className="form-label">Voornaam</label>
-      <input className="form-input" type="text" name="firstname" required />
+  <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Voornaam</label>
+      <input class="form-input" type="text" name="voornaam" required />
     </div>
-    <div className="form-group">
-      <label className="form-label">Achternaam</label>
-      <input className="form-input" type="text" name="lastname" required />
+
+    <div class="form-group">
+      <label class="form-label">Achternaam</label>
+      <input class="form-input" type="text" name="achternaam" required />
     </div>
   </div>
-  
-  <div className="form-group">
-    <label className="form-label">E-mailadres</label>
-    <input className="form-input" type="email" name="email" required />
+
+  <div class="form-group">
+    <label class="form-label">E-mailadres</label>
+    <input class="form-input" type="email" name="email" required />
   </div>
-  
-  <div className="form-group">
-    <label className="form-label">Ik ben geïnteresseerd in</label>
-    <select className="form-select" name="service" defaultValue="">
+
+  <div class="form-group">
+    <label class="form-label">Ik ben geïnteresseerd in</label>
+
+    <select class="form-select" name="dienst" required>
       <option value="">— Selecteer een dienst —</option>
-      <option value="Nederlands voor medische professionals">Nederlands voor medische professionals</option>
-      <option value="Soft skills training">Soft skills training</option>
-      <option value="Spreker &amp; workshops boeken">Spreker &amp; workshops boeken</option>
-      <option value="ITNA-testvoorbereiding">ITNA-testvoorbereiding</option>
-      <option value="Meerdere diensten / volledig traject">Meerdere diensten / volledig traject</option>
+      <option>Nederlands voor medische professionals</option>
+      <option>Soft skills training</option>
+      <option>Spreker & workshops boeken</option>
+      <option>ITNA-testvoorbereiding</option>
+      <option>Meerdere diensten / volledig traject</option>
     </select>
   </div>
-  
-  <div className="form-group">
-    <label className="form-label">Uw bericht</label>
-    <textarea 
-      className="form-textarea" 
-      name="message" 
-      placeholder="Vertel ons kort over uw situatie en wat u zoekt…" 
-      required></textarea>
+
+  <div class="form-group">
+    <label class="form-label">Uw bericht</label>
+
+    <textarea
+      class="form-textarea"
+      name="message"
+      placeholder="Vertel ons kort over uw situatie en wat u zoekt…"
+      required
+    ></textarea>
   </div>
-  
-  <button type="submit" className="form-submit">
-    Verstuur aanvraag{" "}
-    <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" strokeWidth="2" fill="none">
+
+  <button type="submit" class="form-submit">
+    Verstuur aanvraag
+
+    <svg
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      stroke="white"
+      stroke-width="2"
+      fill="none"
+    >
       <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
   </button>
-</form>
   </div>
 </section>
 <footer>
