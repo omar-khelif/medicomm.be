@@ -697,40 +697,42 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value">info@medicomm.be</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-detail-label">Response time</div><div class="contact-detail-value">Within 24 hours on working days</div></div></div>
     </div>
-    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form reveal reveal-delay-2">     
-      <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">     
-      <div class="form-row">    
-        <div class="form-group">         
-          <label class="form-label">First name</label>        
-          <input class="form-input" type="text" name="voornaam" required />
-        </div>    
-        <div class="form-group">          
-          <label class="form-label">Last name</label>         
-          <input class="form-input" type="text" name="achternaam" required />        
-        </div>     
-      </div>      
-      <div class="form-group">        
-        <label class="form-label">Email address</label>      
-        <input class="form-input" type="email" name="email" required />     
-      </div>  
-      <div class="form-group">        
-        <label class="form-label">I am interested in</label>        
-        <select class="form-select" name="dienst" required>         
-          <option value="">— Select a service —</option>       
-          <option>Dutch for medical professionals</option>         
-          <option>Soft skills training</option>
-          <option>Book speaker &amp; workshops</option>         
-          <option>ITNA test preparation</option>  
-          <option>Multiple services / full trajectory</option>  
-        </select>  
-      </div>
-      <div class="form-group">
-        <label class="form-label">Your message</label>   
-        <textarea class="form-textarea" name="message" placeholder="Tell us briefly about your situation and what you are looking for…" required></textarea>
-      </div>   
-      <button type="submit" class="form-submit">Send request <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none">
-        <path d="M5 12h14M12 5l7 7-7 7"/></svg></button>    
-    </form>
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form reveal reveal-delay-2">
+  <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">First name</label>
+      <input class="form-input" type="text" name="voornaam" required />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Last name</label>
+      <input class="form-input" type="text" name="achternaam" required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Email address</label>
+    <input class="form-input" type="email" name="email" required />
+  </div>
+  <div class="form-group">
+    <label class="form-label">I am interested in</label>
+    <select class="form-select" name="dienst" required>
+      <option value="">— Select a service —</option>
+      <option>Dutch for medical professionals</option>
+      <option>Soft skills training</option>
+      <option>Book speaker &amp; workshops</option>
+      <option>ITNA test preparation</option>
+      <option>Multiple services / full trajectory</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Your message</label>
+    <textarea class="form-textarea" name="message" placeholder="Tell us briefly about your situation and what you are looking for…" required></textarea>
+  </div>
+  <button type="submit" class="form-submit">
+    Send request
+    <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</form>
   </div>
 </section>
 <footer>
@@ -835,13 +837,42 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-detail-label">Courriel</div><div class="contact-detail-value">info@medicomm.be</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-detail-label">Temps de réponse</div><div class="contact-detail-value">Dans les 24 heures les jours ouvrables</div></div></div>
     </div>
-    <form class="contact-form reveal reveal-delay-2">
-      <div class="form-row"><div class="form-group"><label class="form-label">Prénom</label><input class="form-input" type="text"/></div><div class="form-group"><label class="form-label">Nom</label><input class="form-input" type="text"/></div></div>
-      <div class="form-group"><label class="form-label">Adresse électronique</label><input class="form-input" type="email"/></div>
-      <div class="form-group"><label class="form-label">Je suis intéressé(e) par</label><select class="form-select"><option value="">— Sélectionnez un service —</option><option>Néerlandais pour professionnels de santé</option><option>Formation soft skills</option><option>Réserver conférencier &amp; ateliers</option><option>Préparation test ITNA</option><option>Plusieurs services / parcours complet</option></select></div>
-      <div class="form-group"><label class="form-label">Votre message</label><textarea class="form-textarea" placeholder="Décrivez brièvement votre situation et ce que vous recherchez…"></textarea></div>
-      <button type="submit" class="form-submit">Envoyer la demande <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-    </form>
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form reveal reveal-delay-2">
+  <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Prénom</label>
+      <input class="form-input" type="text" name="prenom" required />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Nom</label>
+      <input class="form-input" type="text" name="nom" required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Adresse électronique</label>
+    <input class="form-input" type="email" name="email" required />
+  </div>
+  <div class="form-group">
+    <label class="form-label">Je suis intéressé(e) par</label>
+    <select class="form-select" name="dienst" required>
+      <option value="">— Sélectionnez un service —</option>
+      <option>Néerlandais pour professionnels de santé</option>
+      <option>Formation soft skills</option>
+      <option>Réserver conférencier &amp; ateliers</option>
+      <option>Préparation test ITNA</option>
+      <option>Plusieurs services / parcours complet</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Votre message</label>
+    <textarea class="form-textarea" name="message" placeholder="Décrivez brièvement votre situation et ce que vous recherchez…" required></textarea>
+  </div>
+  <button type="submit" class="form-submit">
+    Envoyer la demande
+    <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</form>
   </div>
 </section>
 <footer>
@@ -946,13 +977,42 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-detail-label">Correo electrónico</div><div class="contact-detail-value">info@medicomm.be</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-detail-label">Tiempo de respuesta</div><div class="contact-detail-value">Dentro de 24 horas en días laborables</div></div></div>
     </div>
-    <form class="contact-form reveal reveal-delay-2">
-      <div class="form-row"><div class="form-group"><label class="form-label">Nombre</label><input class="form-input" type="text"/></div><div class="form-group"><label class="form-label">Apellido</label><input class="form-input" type="text"/></div></div>
-      <div class="form-group"><label class="form-label">Dirección de correo electrónico</label><input class="form-input" type="email"/></div>
-      <div class="form-group"><label class="form-label">Estoy interesado/a en</label><select class="form-select"><option value="">— Seleccione un servicio —</option><option>Neerlandés para profesionales médicos</option><option>Formación en habilidades blandas</option><option>Reservar conferenciante &amp; talleres</option><option>Preparación examen ITNA</option><option>Varios servicios / trayecto completo</option></select></div>
-      <div class="form-group"><label class="form-label">Su mensaje</label><textarea class="form-textarea" placeholder="Cuéntenos brevemente su situación y lo que busca…"></textarea></div>
-      <button type="submit" class="form-submit">Enviar solicitud <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-    </form>
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form reveal reveal-delay-2">
+  <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Nombre</label>
+      <input class="form-input" type="text" name="nombre" required />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Apellido</label>
+      <input class="form-input" type="text" name="apellido" required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Dirección de correo electrónico</label>
+    <input class="form-input" type="email" name="email" required />
+  </div>
+  <div class="form-group">
+    <label class="form-label">Estoy interesado/a en</label>
+    <select class="form-select" name="dienst" required>
+      <option value="">— Seleccione un servicio —</option>
+      <option>Neerlandés para profesionales médicos</option>
+      <option>Formación en habilidades blandas</option>
+      <option>Reservar conferenciante &amp; talleres</option>
+      <option>Preparación examen ITNA</option>
+      <option>Varios servicios / trayecto completo</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Su mensaje</label>
+    <textarea class="form-textarea" name="message" placeholder="Cuéntenos brevemente su situación y lo que busca…" required></textarea>
+  </div>
+  <button type="submit" class="form-submit">
+    Enviar solicitud
+    <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</form>
   </div>
 </section>
 <footer>
@@ -1057,13 +1117,42 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-detail-label">Эл. почта</div><div class="contact-detail-value">info@medicomm.be</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-detail-label">Время ответа</div><div class="contact-detail-value">В течение 24 часов в рабочие дни</div></div></div>
     </div>
-    <form class="contact-form reveal reveal-delay-2">
-      <div class="form-row"><div class="form-group"><label class="form-label">Имя</label><input class="form-input" type="text"/></div><div class="form-group"><label class="form-label">Фамилия</label><input class="form-input" type="text"/></div></div>
-      <div class="form-group"><label class="form-label">Адрес электронной почты</label><input class="form-input" type="email"/></div>
-      <div class="form-group"><label class="form-label">Меня интересует</label><select class="form-select"><option value="">— Выберите услугу —</option><option>Нидерландский для медицинских специалистов</option><option>Тренинг гибких навыков</option><option>Пригласить спикера &amp; воркшопы</option><option>Подготовка к тесту ITNA</option><option>Несколько услуг / полный путь</option></select></div>
-      <div class="form-group"><label class="form-label">Ваше сообщение</label><textarea class="form-textarea" placeholder="Кратко расскажите о вашей ситуации и что вы ищете…"></textarea></div>
-      <button type="submit" class="form-submit">Отправить запрос <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-    </form>
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form reveal reveal-delay-2">
+  <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">Имя</label>
+      <input class="form-input" type="text" name="imya" required />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Фамилия</label>
+      <input class="form-input" type="text" name="familiya" required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Адрес электронной почты</label>
+    <input class="form-input" type="email" name="email" required />
+  </div>
+  <div class="form-group">
+    <label class="form-label">Меня интересует</label>
+    <select class="form-select" name="dienst" required>
+      <option value="">— Выберите услугу —</option>
+      <option>Нидерландский для медицинских специалистов</option>
+      <option>Тренинг гибких навыков</option>
+      <option>Пригласить спикера &amp; воркшопы</option>
+      <option>Подготовка к тесту ITNA</option>
+      <option>Несколько услуг / полный путь</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Ваше сообщение</label>
+    <textarea class="form-textarea" name="message" placeholder="Кратко расскажите о вашей ситуации и что вы ищете…" required></textarea>
+  </div>
+  <button type="submit" class="form-submit">
+    Отправить запрос
+    <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</form>
   </div>
 </section>
 <footer>
@@ -1168,13 +1257,42 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-detail-label">البريد الإلكتروني</div><div class="contact-detail-value">info@medicomm.be</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-detail-label">وقت الاستجابة</div><div class="contact-detail-value">في غضون 24 ساعة في أيام العمل</div></div></div>
     </div>
-    <form class="contact-form reveal reveal-delay-2">
-      <div class="form-row"><div class="form-group"><label class="form-label">الاسم الأول</label><input class="form-input" type="text"/></div><div class="form-group"><label class="form-label">اسم العائلة</label><input class="form-input" type="text"/></div></div>
-      <div class="form-group"><label class="form-label">عنوان البريد الإلكتروني</label><input class="form-input" type="email"/></div>
-      <div class="form-group"><label class="form-label">أنا مهتم بـ</label><select class="form-select"><option value="">— اختر خدمة —</option><option>الهولندية للمتخصصين الطبيين</option><option>تدريب المهارات الناعمة</option><option>حجز محاضر &amp; ورش عمل</option><option>التحضير لاختبار ITNA</option><option>خدمات متعددة / مسار كامل</option></select></div>
-      <div class="form-group"><label class="form-label">رسالتك</label><textarea class="form-textarea" placeholder="أخبرنا باختصار عن وضعك وما تبحث عنه…"></textarea></div>
-      <button type="submit" class="form-submit">إرسال الطلب <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-    </form>
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form reveal reveal-delay-2">
+  <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label">الاسم الأول</label>
+      <input class="form-input" type="text" name="ism" required />
+    </div>
+    <div class="form-group">
+      <label class="form-label">اسم العائلة</label>
+      <input class="form-input" type="text" name="laqab" required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">عنوان البريد الإلكتروني</label>
+    <input class="form-input" type="email" name="email" required />
+  </div>
+  <div class="form-group">
+    <label class="form-label">أنا مهتم بـ</label>
+    <select class="form-select" name="dienst" required>
+      <option value="">— اختر خدمة —</option>
+      <option>الهولندية للمتخصصين الطبيين</option>
+      <option>تدريب المهارات الناعمة</option>
+      <option>حجز محاضر &amp; ورش عمل</option>
+      <option>التحضير لاختبار ITNA</option>
+      <option>خدمات متعددة / مسار كامل</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">رسالتك</label>
+    <textarea class="form-textarea" name="message" placeholder="أخبرنا باختصار عن وضعك وما تبحث عنه…" required></textarea>
+  </div>
+  <button type="submit" class="form-submit">
+    إرسال الطلب
+    <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</form>
   </div>
 </section>
 <footer>
