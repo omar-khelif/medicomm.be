@@ -697,70 +697,42 @@ footer{background:#1a2e22;padding:64px 80px 40px;}
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value">info@medicomm.be</div></div></div>
       <div class="contact-detail"><div class="contact-detail-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="contact-detail-label">Response time</div><div class="contact-detail-value">Within 24 hours on working days</div></div></div>
     </div>
-    <form class="contact-form reveal reveal-delay-2">
-      <div class="form-row"><div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text"/></div><div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text"/></div></div>
-      <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email"/></div>
-      <div class="form-group"><label class="form-label">I am interested in</label><select class="form-select"><option value="">— Select a service —</option><option>Dutch for medical professionals</option><option>Soft skills training</option><option>Book speaker &amp; workshops</option><option>ITNA test preparation</option><option>Multiple services / full trajectory</option></select></div>
-      <div class="form-group"><label class="form-label">Your message</label><textarea class="form-textarea" placeholder="Tell us briefly about your situation and what you are looking for…"></textarea></div>
-      <button type="submit" class="form-submit">Send request <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form reveal reveal-delay-2">     
+      <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">     
+      <div class="form-row">    
+        <div class="form-group">         
+          <label class="form-label">First name</label>        
+          <input class="form-input" type="text" name="voornaam" required />
+        </div>    
+        <div class="form-group">          
+          <label class="form-label">Last name</label>         
+          <input class="form-input" type="text" name="achternaam" required />        
+        </div>     
+      </div>      
+      <div class="form-group">        
+        <label class="form-label">Email address</label>      
+        <input class="form-input" type="email" name="email" required />     
+      </div>  
+      <div class="form-group">        
+        <label class="form-label">I am interested in</label>        
+        <select class="form-select" name="dienst" required>         
+          <option value="">— Select a service —</option>       
+          <option>Dutch for medical professionals</option>         
+          <option>Soft skills training</option>
+          <option>Book speaker &amp; workshops</option>         
+          <option>ITNA test preparation</option>  
+          <option>Multiple services / full trajectory</option>  
+        </select>  
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your message</label>   
+        <textarea class="form-textarea" name="message" placeholder="Tell us briefly about your situation and what you are looking for…" required></textarea>
+      </div>   
+      <button type="submit" class="form-submit">Send request <svg viewBox="0 0 24 24" width="14" height="14" stroke="white" stroke-width="2" fill="none">
+        <path d="M5 12h14M12 5l7 7-7 7"/></svg></button>    
     </form>
   </div>
 </section>
-  <form action="https://api.web3forms.com/submit" method="POST">
-
-  <input type="hidden" name="access_key" value="07b0f61a-6ce4-4e46-9cb2-5f37a476ef4b">
-
-  <div class="form-row">
-    <div class="form-group">
-      <label class="form-label">First name</label>
-      <input class="form-input" type="text" name="voornaam" required />
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">Last name</label>
-      <input class="form-input" type="text" name="achternaam" required />
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="form-label">Email address</label>
-    <input class="form-input" type="email" name="email" required />
-  </div>
-
-  <div class="form-group">
-    <label class="form-label">I am interested inn</label>
-
-    <select class="form-select" name="dienst" required>
-      <option value="">— Select a service —</option>
-      <option>Dutch for medical professionals</option>
-      <option>Soft skills training</option>
-      Book speaker &amp; workshops</option><option>ITNA test preparation</option><option>Multiple services / full trajectory</option></select></div>
-
-  <div class="form-group">
-    <label class="form-label">Your message</label>
-
-    <textarea
-      class="form-textarea"
-      name="message"
-      placeholder="Tell us briefly about your situation and what you are looking for…"
-      required
-    ></textarea>
-  </div>
-
-  <button type="submit" class="form-submit">
-    Send Request
-
-    <svg
-      viewBox="0 0 24 24"
-      width="14"
-      height="14"
-      stroke="white"
-      stroke-width="2"
-      fill="none"
-    >
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  </button>
 <footer>
   <div class="footer-top">
     <div class="footer-brand"><div class="footer-logo"><div class="footer-logo-icon"></div><div class="footer-wordmark"><span>medi</span><span>comm</span></div></div><p class="footer-tagline">Medical Language<strong>.</strong> Communication <strong>&amp;</strong> Integration<strong>.</strong><br><br>Medical Language. Communication &amp; Integration.<br><br>Your partner for language, communication and professional integration in Belgian healthcare.</p></div>
